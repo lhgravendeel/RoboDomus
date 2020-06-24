@@ -106,7 +106,11 @@ public class Application {
           boolean on = !action.startsWith("off");
           int brightness = 0;
           if(on) {
-            brightness = obj.get("brightness").getAsInt();
+            if(obj.get("brightness") == null) {
+              brightness = 255;
+            } else {
+              brightness = obj.get("brightness").getAsInt();
+            }
           }
           sendAsync(lamps, on, brightness);
         }
